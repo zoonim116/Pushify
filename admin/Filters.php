@@ -46,6 +46,9 @@ class Filters
 
     public static function pushify_post_types($types)
     {
-
+        $excluded_types = ['attachment'];
+        return array_filter($types, function ($type) use ($excluded_types) {
+            return !in_array($type->name, $excluded_types);
+        });
     }
 }

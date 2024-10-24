@@ -1,5 +1,6 @@
 <?php
 use Pushify\Admin\Settings;
+use Pushify\Helper;
 if (! defined('ABSPATH')) {
     exit;
 }
@@ -22,7 +23,7 @@ require_once PUSHIFY_PATH.'templates/dashboard_tabs.php';
                     <td>
                         <input type="file" id="pushify_conf_credentials" accept="application/json" name="pushify_conf_credentials" <?php echo !get_option('pushify_conf_credentials') ? 'required' : ''; ?>>
                         <?php if (get_option('pushify_conf_credentials')): ?>
-                            <span class="filename"><?php echo pathinfo(get_option('pushify_conf_credentials'))['filename'].'.json'; ?></span>
+                            <span class="filename"><?php esc_attr_e(pathinfo(get_option('pushify_conf_credentials'))['filename'].'.json'); ?></span>
                         <?php endif; ?>
                     </td>
                 </tr>
@@ -40,6 +41,23 @@ require_once PUSHIFY_PATH.'templates/dashboard_tabs.php';
                     </th>
                     <td>
                         <input id="pushify_conf_sound" name="pushify_conf_sound" type="text" value="<?php esc_attr_e(get_option('pushify_conf_sound', 'default')) ?>" required>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        <?php esc_html_e('Post Types', 'pushify') ?>
+                    </th>
+                    <td>
+                        <fieldset>
+                            <p>
+                                <?php foreach ($post_types as $post_type): ?>
+                                    <label>
+                                        <input type="checkbox" name="pushify_post_type_<?php esc_attr_e($post_type->name) ?>" <?php if (Helper::can($post_type)): ?> checked <?php endif; ?> value="1">
+                                        <?php esc_attr_e($post_type->labels->singular_name) ?>
+                                    </label>
+                                <?php endforeach; ?>
+                            </p>
+                        </fieldset>
                     </td>
                 </tr>
                 </tbody>

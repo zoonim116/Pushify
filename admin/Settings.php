@@ -2,6 +2,8 @@
 
 namespace Pushify\Admin;
 
+use Pushify\Helper;
+
 class Settings
 {
     public static function register() {
@@ -10,6 +12,9 @@ class Settings
         ]);
         register_setting('pushify_settings', 'pushify_conf_channel');
         register_setting('pushify_settings', 'pushify_conf_sound');
+        foreach (Helper::get_post_types() as $post_type) {
+            register_setting('pushify_settings', "pushify_post_type_{$post_type->name}");
+        }
     }
 
     public static function sanitize_credentials()
@@ -28,6 +33,8 @@ class Settings
                     return $upload_path . $file_name;
                 }
             }
+        } else {
+            return get_option('pushify_conf_credentials');
         }
     }
 

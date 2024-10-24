@@ -2,6 +2,8 @@
 
 namespace Pushify\Admin;
 
+use Pushify\Helper;
+
 class Menu
 {
     public static function register_menu() {
@@ -34,12 +36,7 @@ class Menu
     }
 
     public static function draw_settings_screen() {
-        $post_types = get_post_types([
-            'public'   => true,
-            '_builtin' => true,
-        ], 'objects');
-        echo "<pre>";
-        die(var_dump($post_types));
+        $post_types = Helper::get_post_types();
         ob_start();
         require_once PUSHIFY_PATH . '/templates/settings.php';
         echo ob_get_clean();
