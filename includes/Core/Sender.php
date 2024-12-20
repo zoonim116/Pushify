@@ -31,7 +31,7 @@ class Sender
 
         $notification_data = [
             'message' => [
-                'token' => 'fhkTUElgTjaY3YQnVp-9E9:APA91bE1e5Jg3Rqh_vlQsW0sZI4VavJ2GivO7WTxYh3m9TTMbyje2takWsehMhtaUi-N1bWbWGv_KD48QsQFRxzlyoT_xQeFJDVkfEMUFrJgs2XfEZBzOGtfKkXcORoAR7bue3LqQTrO',
+                'token' => 'fhkTUElgTjaY3YQnVp-9E9:APA91bE1e5Jg3Rqh_vlQsW0sZI4VavJ2GivO7WTxYh3m9TTMbyje2takWsehMhtaUi-N1bWbWGv_KD48QsQFRxzlyoT_xQeFJDVkfEMUFrJgs2XfEZBzOGtfKkXcORoAR7bue3LqQTrO', // This is a test phone token for debug and test notifications
                 //'topic' => 'weather',
                 'notification' => [
                     'title' => apply_filters('pushify_post_title', $post),
